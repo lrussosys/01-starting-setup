@@ -1,11 +1,8 @@
 import React from "react";
-import { useState } from "react";
 
 import "./ExpensesFilter.css";
 
 const ExpensesFilter = (props) => {
-    const [enteredFilter, setEnteredFilter] = useState("");
-
     const selectChangeHandler = (event) => {
         props.onSelectedFilter(event.target.value);
     };

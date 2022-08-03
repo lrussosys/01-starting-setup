@@ -1,18 +1,21 @@
 import { useState } from "react";
-
+import ExpensesList from "../ExpensesList/ExpensesList";
 import Card from "../Card/Card";
-import ExpenseItem from "../ExpenseItem/ExpenseItem";
 import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
 
 import "./ExpenseItems.css";
 
 function ExpenseItems(props) {
-    const [filteredYear, setFilteredYear] = useState(2020);
+    const [filteredYear, setFilteredYear] = useState("2020");
 
     const selectedFilterHandler = (filter) => {
         console.log(filter);
-        setFilteredYear(filter)
+        setFilteredYear(filter);
     };
+
+    const filteredExpenses = props.expenses.filter((expense) => {
+        return expense.date.getFullYear().toString() === filteredYear;
+    });
 
     return (
         <div>
@@ -21,7 +24,24 @@ function ExpenseItems(props) {
                     selected={filteredYear}
                     onSelectedFilter={selectedFilterHandler}
                 ></ExpensesFilter>
-                <ExpenseItem
+
+                <ExpensesList items={filteredExpenses} />
+
+                {/* {filteredExpenses.length === 0 && <p>No expenses found.</p>}
+
+                {filteredExpenses.length > 0 &&
+                    filteredExpenses.map((expense) => (
+                        <ExpenseItem
+                            key={expense.id}
+                            title={expense.title}
+                            amount={expense.amount}
+                            date={expense.date}
+                        ></ExpenseItem>
+                    ))} */}
+
+                {/* CICLO SU ARRAY DI ELEMENTI */}
+
+                {/* <ExpenseItem
                     title={props.expense[0].title}
                     amount={props.expense[0].amount}
                     date={props.expense[0].date}
@@ -40,7 +60,7 @@ function ExpenseItems(props) {
                     title={props.expense[3].title}
                     amount={props.expense[3].amount}
                     date={props.expense[3].date}
-                ></ExpenseItem>
+                ></ExpenseItem> */}
             </Card>
         </div>
     );
