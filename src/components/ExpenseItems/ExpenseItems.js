@@ -2,6 +2,7 @@ import { useState } from "react";
 import ExpensesList from "../ExpensesList/ExpensesList";
 import Card from "../Card/Card";
 import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
+import ExpensesChart from "../ExpensesChart/ExpensesChart";
 
 import "./ExpenseItems.css";
 
@@ -25,6 +26,7 @@ function ExpenseItems(props) {
                     onSelectedFilter={selectedFilterHandler}
                 ></ExpensesFilter>
 
+                <ExpensesChart expenses={filteredExpenses} />
                 <ExpensesList items={filteredExpenses} />
 
                 {/* {filteredExpenses.length === 0 && <p>No expenses found.</p>}
